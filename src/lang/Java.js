@@ -1,7 +1,7 @@
 var execSync = require('child_process').execSync,
     path = require('path');
 module.exports.initSync = function (files) {
-  var res = [];
+  var res = [], className;
   for (var i = 0, l = files.length; i < l; i++) {
     if (files[i].match(/\.java$/)) {
       execSync('javac '+files[i]);
