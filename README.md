@@ -4,7 +4,7 @@ This is a simple project to compare how fast various languages can run, for exam
 
 # Requirements
 
-1 Node.JS version 0.10+
-2 Java VM for Java code
-3 GCC (on Mac it comes with XCode App from the App Store)
+* Node.JS version 0.10+
+* Java VM for Java code
+* GCC (on Mac OS X it comes with XCode App from the App Store)
 
