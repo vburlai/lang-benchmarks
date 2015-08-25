@@ -26,7 +26,7 @@ if (process.argv.length !== 4) {
   } else {
     input = fs.readFileSync(testspath + path.sep + testdir + path.sep + INPUTFILENAME, 'utf-8');
     if (input.length > 0 ) {
-      process.stdout.write("Running test cases from 'tests/"+testdir+path.sep+"'\n");
+      process.stdout.write("Running test cases from 'tests/"+testdir+"/'\n");
 
       files = fs.readdirSync(testspath + path.sep + testdir);
 
