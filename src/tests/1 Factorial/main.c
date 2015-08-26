@@ -3,7 +3,7 @@
 
 int N = -1;               // input
 unsigned T;               // time limit (seconds)
-unsigned long stopTime;   // time when we should stop
+struct timeval stopTime;  // time when we should stop
 unsigned long iterations; // amount of finished cycles of computing
 
 unsigned long res; // current value
@@ -29,9 +29,11 @@ int main (int argc, char ** argv) {
 
 void start() {
   struct timeval now;
+  gettimeofday(&stopTime, NULL);
+  stopTime.tv_sec += T; // NOW + T seconds
   gettimeofday(&now, NULL);
-  stopTime = now.tv_sec * 1000 + now.tv_usec + T * 1000; // NOW + T seconds
-  while (now.tv_sec * 1000 + now.tv_usec < stopTime) {
+  while (now.tv_sec <  stopTime.tv_sec ||
+        (now.tv_sec == stopTime.tv_sec && now.tv_usec < stopTime.tv_usec)) {
     reinit();
     calc(N);
     iterations++;
