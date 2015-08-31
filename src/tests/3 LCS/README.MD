@@ -6,7 +6,7 @@ Given:
   Y - string of length m
 
 Find LCS (X, Y) which is a string: 
-  * containing only characters which are present in both string
+  * containing only characters which are present in both strings
   * which are positioned in the same order as they are present in both strings
   * LCS is the longest of all such subsequences
 
