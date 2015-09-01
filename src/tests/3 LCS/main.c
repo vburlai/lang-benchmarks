@@ -33,6 +33,7 @@ int main (int argc, char ** argv) {
     fgets(Y, 2047, stdin);
     m = (unsigned int)strlen(Y);
     Y[--m] = 0; // trim new-line
+    printf("\n");
     start();
   }
   return 0;

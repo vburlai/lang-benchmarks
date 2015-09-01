@@ -37,6 +37,7 @@ public class Main {
 	  if (Y == null) {
 	    Y = chunk.trim();
 	    m = Y.length();
+	    System.out.print("\n");
 	    start();
 	  }
 	}

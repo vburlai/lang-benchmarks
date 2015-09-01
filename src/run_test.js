@@ -11,7 +11,9 @@ var name, // name or number of the test (to match against directory name)
     files, // list of files in test case 'tests/<test case name>/'
     langspath = path.dirname(__filename)+path.sep+"lang", // path to 'lang/' dir
     langmodules, // lang modules loaded
-    execlist; // list of commands to execute (and compare results)
+    execlist, // list of commands to execute (and their results)
+    maxiterations, // max number of iterations - best result
+    longesttitle; // longest language title
 
 if (process.argv.length !== 4) {
   process.stdout.write("Test name or number and time per test required:\n node run_test.js <test number/name> <time per test>\n");
@@ -26,7 +28,7 @@ if (process.argv.length !== 4) {
   } else {
     input = fs.readFileSync(testspath + path.sep + testdir + path.sep + INPUTFILENAME, 'utf-8');
     if (input.length > 0 ) {
-      process.stdout.write("Running test cases from 'tests/"+testdir+"/'\n");
+      process.stdout.write("Running test cases from 'tests/"+testdir+"/'");
 
       files = fs.readdirSync(testspath + path.sep + testdir);
 
@@ -35,9 +37,15 @@ if (process.argv.length !== 4) {
 
       execlist = initlangmodulesSync();
 
+      process.stdout.write(" for " + (execlist.length * parseInt(time, 10)) + " seconds\n");
+
       runtests(execlist);
 
       process.chdir(cwd);
+
+      outputresults(execlist);
+
+      drawscores(execlist, maxiterations, longesttitle);
     }
   }
 }
@@ -58,10 +66,8 @@ function loadlangmodulesSync() {
   for (var i = 0, l = langs.length; i < l; i++) {
     if (langs[i].match(/\.js$/)) {
       langmodules[langmodules.length] = require(langspath+path.sep+langs[i]);
-      process.stdout.write("  Module "+langs[i]+" loaded\n");
     }
   }
-  process.stdout.write("\n");
 }
 
 function initlangmodulesSync() {
@@ -73,12 +79,54 @@ function initlangmodulesSync() {
 }
 
 function runtests(execlist) {
+  maxiterations = 0;
   for (var i = 0, l = execlist.length; i < l; i++) {
     var opts = {
           input: input,
           encoding: 'utf-8'
 	  };
-    var res = execSync(execlist[i].exec + ' '+execlist[i].args.concat([time]).join(' '), opts);
-    process.stdout.write(res.replace(/^(?=.)/mg, '['+execlist[i].title+'] ') + "\n");
+    execlist[i].output = execSync(execlist[i].exec + ' '+execlist[i].args.concat([time]).join(' '), opts);
+    execlist[i].iterations = 0;
+    var m;
+    if (m = execlist[i].output.match(/> ([0-9]+)/m)) {
+      execlist[i].iterations = parseInt(m[1], 10);
+      if (execlist[i].iterations > maxiterations) {
+        maxiterations = execlist[i].iterations;
+      }
+    }
+    if (typeof longesttitle == 'undefined' || longesttitle.length < execlist[i].title.length) {
+      longesttitle = execlist[i].title;
+    }
   }
+}
+
+function outputresults(execlist) {
+  for (var i = 0, l = execlist.length; i < l; i++) {
+    process.stdout.write("[" + execlist[i].title + "]\n");
+    process.stdout.write(execlist[i].output.replace(/^/mg,"  ") + "\n");
+  }
+}
+
+function drawscores(execlist, maxiterations, longesttitle) {
+  var cols = 60;
+  if (process.stdout.isTTY) {
+    cols = Math.floor(process.stdout.columns * 0.8);
+  }
+
+  // space available for chart
+  var space = cols - " 1.000 ".length - longesttitle.length;
+
+  for (var i = 0, l = execlist.length; i < l; i++) {
+    var score = execlist[i].iterations / maxiterations;
+    process.stdout.write( drawrow("", space * score, space) );
+    process.stdout.write( " " + drawrow((Math.ceil( 1000 * score) / 1000)+"", 0, 5) + " " + execlist[i].title + "\n");
+  }
+}
+
+function drawrow(prefix, score, len) {
+  var res = prefix;
+  for (var i = prefix.length; i < len; i++) {
+    res += (i < score) ? "#" : " ";
+  }
+  return res;
 }

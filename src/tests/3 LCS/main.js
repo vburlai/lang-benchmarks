@@ -26,11 +26,12 @@ if (process.argv.length != 3) {
 	X = r[0].trim();
 	n = X.length;
 	if (r.length > 0) {
+          process.stdout.write("Input Y: ");
 	  Y = r[1].trim();
 	  m = Y.length;
 	}
         if (typeof Y === 'undefined') {
-          process.stdout.write(X+"\nInput Y: ");
+          process.stdout.write("Input Y: ");
         }
       } else {
         if (typeof Y === 'undefined') {
@@ -40,6 +41,7 @@ if (process.argv.length != 3) {
       }
       if (typeof X !== 'undefined' &&
           typeof Y !== 'undefined') {
+	process.stdout.write("\n");
 	setTimeout(start, 1);
       }
     }
