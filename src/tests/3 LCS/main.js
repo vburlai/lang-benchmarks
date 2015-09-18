@@ -25,7 +25,7 @@ if (process.argv.length != 3) {
         var r = chunk.trim().split("\n");
 	X = r[0].trim();
 	n = X.length;
-	if (r.length > 0) {
+	if (r.length > 1) {
           process.stdout.write("Input Y: ");
 	  Y = r[1].trim();
 	  m = Y.length;
