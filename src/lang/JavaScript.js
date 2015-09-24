@@ -4,9 +4,9 @@ module.exports.initSync = function (files) {
     if (files[i].match(/\.js$/)) {
       res[res.length] = { title: 'JavaScript',
                           exec: 'node',
-			  args: [files[i]] };
-
+                          args: [files[i]] };
     }
   }
+
   return res;
 }
