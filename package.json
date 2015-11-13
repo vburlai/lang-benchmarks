@@ -1,0 +1,23 @@
+{
+  "name": "lang-benchmarks",
+  "version": "1.0.0",
+  "description": "Language comparison benchmarks",
+  "scripts": {
+    "start": "node src/run_all.js 2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vburlai/lang-benchmarks.git"
+  },
+  "keywords": [
+    "benchmarks",
+    "languages"
+  ],
+  "author": "Vitaly Burlai <vitaly.burlai@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vburlai/lang-benchmarks/issues"
+  },
+  "homepage": "https://github.com/vburlai/lang-benchmarks#readme",
+  "private": true
+}

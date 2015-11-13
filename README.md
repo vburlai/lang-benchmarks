@@ -12,3 +12,7 @@ This is a simple project to compare how fast various languages can run, for exam
 * GCC (on Mac OS X it comes with XCode App from the App Store)
 * Emscripten ('emcc' should be in PATH)
 
+# Running
+
+Run all tests with `npm start`
+
