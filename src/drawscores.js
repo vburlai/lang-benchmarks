@@ -35,7 +35,7 @@ var drawrow = function (prefix, score, len) {
   
     for (var i = 0, l = execlist.length; i < l; i++) {
       var score = execlist[i].iterations / maxiterations;
-      process.stdout.write( drawrow("", space * score, space) );
+      process.stdout.write( drawrow(execlist[i].missing || "", space * score, space) );
       process.stdout.write( " " + drawrow((Math.ceil( 1000 * score) / 1000)+"", 0, 5) + " " + execlist[i].title + "\n");
     }
   };

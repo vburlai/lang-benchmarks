@@ -18,6 +18,8 @@ module.exports.initSync = function (files) {
                           args: [className] };
       }
     }
+  } else {
+    res[res.length] = { title: 'Java', missing: "'javac' not found" };
   }
 
   return res;

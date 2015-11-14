@@ -22,7 +22,9 @@ module.exports.initSync = function (files) {
           res[res.length] = { title: 'C',
                           exec: "./"+output,
                           args: [] };
-        }
+        } else {
+	  res[res.length] = { title: 'C', missing: "'cc' not found" };
+	}
         if (hasemcc) {
           output = files[i].split(path.sep).pop().replace('.c', '.emccjs');
           execSync('emcc -o ' + output + ".js " + files[i], {stdio: [null, null, null]});
@@ -30,7 +32,9 @@ module.exports.initSync = function (files) {
           res[res.length] = { title: 'Emscripten',
                           exec: "node "+output,
                           args: [] };
-        }
+        } else {
+	  res[res.length] = { title: 'Emscripten', missing: "'emcc' not found" };
+	}
       }
     }
   }

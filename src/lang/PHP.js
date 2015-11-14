@@ -16,6 +16,8 @@ module.exports.initSync = function (files) {
                           args: [files[i]] };
       }
     }
+  } else {
+    res[res.length] = { title: 'PHP', missing: "'php' not found" };
   }
 
   return res;

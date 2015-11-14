@@ -90,11 +90,13 @@ function runtests(execlist) {
           input: input,
           encoding: 'utf-8'
 	  };
-    execlist[i].output = execSync(execlist[i].exec + ' '+execlist[i].args.concat([time]).join(' '), opts);
     execlist[i].iterations = 0;
-    var m;
-    if (m = execlist[i].output.match(/> ([0-9]+)/m)) {
-      execlist[i].iterations = parseInt(m[1], 10);
+    if (execlist[i].exec) {
+      execlist[i].output = execSync(execlist[i].exec + ' '+execlist[i].args.concat([time]).join(' '), opts);
+      var m;
+      if (m = execlist[i].output.match(/> ([0-9]+)/m)) {
+        execlist[i].iterations = parseInt(m[1], 10);
+      }
     }
   }
 }

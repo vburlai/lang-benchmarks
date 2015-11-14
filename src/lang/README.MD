@@ -12,4 +12,10 @@
          'args': ['a', 'b', 'c'] },
          ...] 
   ```
+  If some test is missing the platform to run it, the following is returned:
+  ```javascript
+     [ { 'title': '...',
+         'missing': '...' },
+	 ...]
+  ```
   
