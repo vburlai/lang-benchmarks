@@ -1,3 +1,5 @@
 *.class
 *.bin
+*.binO0
+*.binO2
 *.emccjs

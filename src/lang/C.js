@@ -19,8 +19,15 @@ module.exports.initSync = function (files) {
     for (var i = 0, l = files.length; i < l; i++) {
       if (files[i].match(/\.c$/)) {
         if (hascc) {
-          output = files[i].split(path.sep).pop().replace('.c', '.bin');
-          execSync('cc -o ' + output + " " + files[i], {stdio:[null, null, null]});
+          output = files[i].split(path.sep).pop().replace('.c', '.binO0');
+          execSync('cc -O0 -o ' + output + " " + files[i], {stdio:[null, null, null]});
+
+          res[res.length] = { title: 'C (non-opt)',
+                              exec: "./"+output,
+                              args: [] };
+
+          output = files[i].split(path.sep).pop().replace('.c', '.binO2');
+          execSync('cc -O2 -o ' + output + " " + files[i], {stdio:[null, null, null]});
 
           res[res.length] = { title: 'C',
                               exec: "./"+output,
