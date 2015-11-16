@@ -11,6 +11,7 @@ This is a simple project to compare how fast various languages can run, for exam
 * JDK for Java code ('java' and 'javac' should be in PATH)
 * GCC (on Mac OS X it comes with XCode App from the App Store)
 * Emscripten ('emcc' should be in PATH)
+* PHP ('php' should be in PATH)
 
 # Running
 
