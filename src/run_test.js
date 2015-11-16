@@ -107,7 +107,9 @@ function outputjson(execlist) {
 
 function outputresults(execlist) {
   for (var i = 0, l = execlist.length; i < l; i++) {
-    process.stdout.write("[" + execlist[i].title + "]\n");
-    process.stdout.write(execlist[i].output.replace(/^/mg,"  ") + "\n");
+    if (execlist[i].output) {
+      process.stdout.write("[" + execlist[i].title + "]\n");
+      process.stdout.write(execlist[i].output.replace(/^/mg,"  ") + "\n");
+    }
   }
 }
