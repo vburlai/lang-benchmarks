@@ -3,3 +3,5 @@
 *.binO0
 *.binO2
 *.emccjs
+*.emccjsO0
+*.emccjsO2

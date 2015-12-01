@@ -33,20 +33,28 @@ module.exports.initSync = function (files) {
                               exec: "./"+output,
                               args: [] };
         } else {
-	  res[res.length] = { title: 'C', missing: "'cc' not found" };
-	}
+          res[res.length] = { title: 'C', missing: "'cc' not found" };
+        }
 
         if (hasemcc) {
-          output = files[i].split(path.sep).pop().replace('.c', '.emccjs');
-          execSync('emcc -o ' + output + ".js " + files[i], {stdio: [null, null, null]});
+          output = files[i].split(path.sep).pop().replace('.c', '.emccjsO0');
+          execSync('emcc -O0 -o ' + output + ".js " + files[i], {stdio: [null, null, null]});
+          renameSync(output + '.js', output);
+
+          res[res.length] = { title: 'Emscripten (non-opt)',
+                              exec: "node "+output,
+                              args: [] };
+
+          output = files[i].split(path.sep).pop().replace('.c', '.emccjsO2');
+          execSync('emcc -O2 -o ' + output + ".js " + files[i], {stdio: [null, null, null]});
           renameSync(output + '.js', output);
 
           res[res.length] = { title: 'Emscripten',
                               exec: "node "+output,
                               args: [] };
         } else {
-	  res[res.length] = { title: 'Emscripten', missing: "'emcc' not found" };
-	}
+          res[res.length] = { title: 'Emscripten', missing: "'emcc' not found" };
+        }
       }
     }
   }
