@@ -27,8 +27,8 @@ if (process.argv.length !== 3) {
       for (var j = 0, k = outjson.length; j < k; j++) {
         var title = outjson[j].title,
             iterations = outjson[j].iterations / DIVIDER,
-	    missing = outjson[j].missing;
-	    //console.log(files[i] + ' ' + title +' '+iterations);
+            missing = outjson[j].missing;
+        //console.log(files[i] + ' ' + title +' '+iterations);
         if (typeof mapping[title] !== 'undefined') {
           results[mapping[title]].iterations += iterations;
         } else {

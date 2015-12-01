@@ -12,7 +12,7 @@ var drawrow = function (prefix, score, len) {
   drawscores = function (execlist) {
     var cols = 60,
         maxiterations = 0,
-	longesttitle = '';
+        longesttitle = '';
     if (process.stdout.isTTY) {
       cols = Math.floor(process.stdout.columns * 0.8);
     }

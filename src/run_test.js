@@ -89,7 +89,7 @@ function runtests(execlist) {
     var opts = {
           input: input,
           encoding: 'utf-8'
-	  };
+        };
     execlist[i].iterations = 0;
     if (execlist[i].exec) {
       execlist[i].output = execSync(execlist[i].exec + ' '+execlist[i].args.concat([time]).join(' '), opts);
