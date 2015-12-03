@@ -17,3 +17,17 @@ This is a simple project to compare how fast various languages can run, for exam
 
 Run all tests with `npm start`
 
+# Example
+
+It shows somehing line this on my machine:
+
+```
+Overall summary (from fastest to slowest):
+|######################################################### 1000  C
+|################################################           836  Java
+|##############################                             530  C (non-opt)
+|##########################                                 449  Emscripten
+|###################                                        333  Emscripten (non-opt)
+|##########                                                 174  JavaScript
+|##                                                          42  PHP
+```
