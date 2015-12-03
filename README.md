@@ -19,7 +19,7 @@ Run all tests with `npm start`
 
 # Example
 
-It shows somehing line this on my machine:
+It shows somehing like this on my machine:
 
 ```
 Overall summary (from fastest to slowest):
